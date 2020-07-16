@@ -1,0 +1,338 @@
+//Main
+import java.util.Scanner;
+public class Main
+{
+    
+	public static void main(String[] args) {
+	    Play a = new Play();
+	    a.start();
+	    
+	
+	}
+
+}
+
+
+
+
+//Person
+public class Person 
+{
+    String name;
+    String scramble;
+    String question;
+    String answer;
+    
+    public Person()
+    {
+        name = "";
+        scramble = "";
+        question = "";
+        answer = "";
+    }
+    
+    public Person(String a, String b, String c, String d)
+    {
+        name = a;
+        scramble = b;
+        question = c;
+        answer = d;
+    }
+    
+    
+}
+
+
+
+//Location
+public class Location 
+{
+    String name;
+    String address;
+    String question;
+    String answer;
+    
+    public Location()
+    {
+        name = "";
+        address = "";
+        question = "";
+        answer = "";
+    }
+    
+    public Location(String a, String b, String c, String d)
+    {
+        name = a;
+        address = b;
+        question = c;
+        answer = d;
+    }
+    
+    
+    
+    
+}
+
+
+
+
+//Location
+import java.util.Scanner;
+public class Play
+{
+    
+    public Person mango = new Person("Mango","O N A M G", "What do you call a group of crows?(6)","Murder");
+    public Person tomato = new Person("Tomato","O O T T A M", "What’s the total number of dots on a pair of dice?","42");
+    public Person persimmon = new Person("Persimmon","M P S I R O M E N", "Spinach is high in which mineral?(4)","Iron");
+    public Person lime = new Person("Lime","M I L E", "What is the name of the toy cowboy in Toy Story?(5)","Woody");
+    public Person blueberry = new Person("Blueberry","R R E Y U B L E B", "What is the capital of Sweden?(9)","Stockholm");
+    public Person grape = new Person("Grape","A P E R G", "What type of fish is Nemo?(9)","Clownfish");
+    public Person dragonfruit = new Person("Dragonfruit","R N O F U D A G T I R", "Where is the tallest tower of the world located?(5)","Dubai");
+    public Person lychee = new Person("Lychee","H E C Y L E", "What is the name of Harry Potter’s pet owl?(6)","Hedwig");
+    
+    public Person[] a = {mango,tomato,persimmon,lime,blueberry,grape,dragonfruit,lychee};
+    
+    public Location school = new Location("School","10550 Albion Rd, San Ramon (6)","In what country were the Olympics invented?(6)","Greece");
+    public Location library = new Location("Library","17017 Bollinger Canyon Rd, San Ramon (7)","Name the closest star to the Earth?(3)","Sun");
+    public Location supermarket = new Location("Supermarket","300 Market Pl, San Ramon (11)","Who was the 16th president of the US (last name only)?","Lincoln");
+    public Location park = new Location("Park","2850 Bethany Rd, San Ramon (4)","What is the name of the scale that measures earthquakes?(7)","Richter");
+    public Location bank = new Location("Bank","3100 Crow Canyon Pl, San Ramon (4)","What was the year YouTube was created?","2005");
+    public Location gym = new Location("Gym","101 Town and Country Dr A, Danville (3)","What is the hardest natural substance?(7)","Diamond");
+    public Location bakery = new Location("Bakery","4288 Dublin Blvd Suite 107, Dublin (6)","Which country gave the Statue of Liberty to the U.S.? (6)","France");
+    public Location restaurant = new Location("Restaurant","3878 Fallon Rd, Dublin (10)","Hotel? (7)","Trivago");
+
+    public Location[] b = {school,library,supermarket,park,bank,gym,bakery,restaurant};
+    
+    public String[] persClue = {"I’m not the criminal, why would you think that?", "Believe me, Grape isn’t the criminal.", "There is no way that it is Mango.", 
+    "There is a nine-letter fruit that’s lying.", "Persimmon is telling the truth.", "Blueberry is naive.", "Lychee is trustworthy.", "It’s not me I swear!"};
+    public String[] locClue = {"The criminal doesn’t like to commit crimes at locations with a letter count of higher than 10.","If the criminal wanted money, they’d go rob a bank, but they have rich parents.", "The criminal went to the bakery after committing the crime to celebrate.",
+    "Putting in the work, the criminal read crime books before leaving to do crime.","You’ll never catch the criminal setting foot on campus, they hate education.","Five or less letter locations are appealing, and easy to put into a GPS.",
+    "While they are committing a crime, they don’t want children to see them this way so they avoid locations with children at all costs.","No one likes a person who brings food into this location."};
+    
+    
+	public void start() {
+		System.out.println("Welcome to Trivia Mystery!");
+		System.out.println();
+		unscramble();
+		System.out.println();
+		locate();
+		System.out.println();
+		summary();
+		System.out.println();
+		personQuestions();
+		System.out.println();
+		locationQuestions();
+		System.out.println();
+		clueSummary();
+		System.out.println();
+		finish();
+		
+		
+
+	}
+	
+	public void unscramble()
+	{
+	    Scanner s = new Scanner(System.in);
+	    System.out.println("Unscramble to find your possible suspects.");
+	    for (int i = 0; i < 8; i ++)
+	    {
+	        System.out.print(a[i].scramble + ": ");
+	        String answer = s.nextLine();
+	        if (answer.toLowerCase().compareTo(a[i].name.toLowerCase()) != 0)
+	        {
+	            for (int j = 0; j <100; j++)
+	            {
+	                System.out.println("Wrong answer! Try again.");
+	                System.out.print(a[i].scramble + ": ");
+	                String solve = s.nextLine();
+	                if (solve.toLowerCase().compareTo(a[i].name.toLowerCase()) == 0)
+	                {
+	                    j = 101;
+	                }
+	            }
+	            
+	        }
+	        
+	        
+	    }
+	    
+	    
+	}
+	
+	public void locate()
+	{
+	    Scanner c = new Scanner(System.in);
+	    System.out.println("Find your possible locations.");
+	    for (int i = 0; i < 8; i ++)
+	    {
+	        System.out.print(b[i].address + ": ");
+	        String answer = c.nextLine();
+	        if (answer.toLowerCase().compareTo(b[i].name.toLowerCase()) != 0)
+	        {
+	            for (int j = 0; j <100; j++)
+	            {
+	                System.out.println("Wrong answer! Try again.");
+	                System.out.print(b[i].address + ": ");
+	                String solve = c.nextLine();
+	                if (solve.toLowerCase().compareTo(b[i].name.toLowerCase()) == 0)
+	                {
+	                    j = 101;
+	                }
+	            }
+	            
+	        }
+	        
+	    }
+	    
+	    
+	}
+	
+	
+	public void summary()
+	{
+	    System.out.println("Suspects:");
+	    for (int i = 0; i < 8; i ++)
+	    {
+	        System.out.println(a[i].name);
+
+	    }
+	    
+	    System.out.println();
+	    
+	    System.out.println("Locations:");
+	    for (int i = 0; i < 8; i ++)
+	    {
+	        System.out.println(b[i].name);
+	        
+	    }
+	    
+	}
+	
+	public void personQuestions()
+	{
+	    Scanner s = new Scanner(System.in);
+	    System.out.println("Answer the questions to get clues about the criminal is. Remeber that 6-letter fruits NEVER lie.");
+	    for (int i = 0; i < 8; i ++)
+	    {
+	        System.out.print(a[i].question + ": ");
+	        String right = s.nextLine();
+	        if (right.toLowerCase().compareTo(a[i].answer.toLowerCase()) != 0)
+	        {
+	            for (int j = 0; j <100; j++)
+	            {
+	                System.out.println("Wrong answer! Try again.");
+	                System.out.print(a[i].question + ": ");
+	                String solve = s.nextLine();
+	                if (solve.toLowerCase().compareTo(a[i].answer.toLowerCase()) == 0)
+	                {
+	                    System.out.println(a[i].name + ": "+ persClue[i]);
+	                    System.out.println();
+	                    j = 101;
+	                }
+	            }
+	            
+	        }
+	        else
+	        {
+	            System.out.println(a[i].name + ": "+ persClue[i]);
+	            System.out.println();
+	        }
+	        
+	    }
+	}
+	
+	public void locationQuestions()
+	{
+	    Scanner c = new Scanner(System.in);
+	    System.out.println("Answer the questions to get clues about the real location.");
+	    for (int i = 0; i < 8; i ++)
+	    {
+	        System.out.print(b[i].question + ": ");
+	        String right = c.nextLine();
+	        if (right.toLowerCase().compareTo(b[i].answer.toLowerCase()) != 0)
+	        {
+	            for (int j = 0; j <100; j++)
+	            {
+	                System.out.println("Wrong answer! Try again.");
+	                System.out.print(b[i].question + ": ");
+	                String solve = c.nextLine();
+	                if (solve.toLowerCase().compareTo(b[i].answer.toLowerCase()) == 0)
+	                {
+	                    System.out.println(locClue[i]);
+	                    System.out.println();
+	                    j = 101;
+	                }
+	            }
+	            
+	        }
+	        else
+	        {
+	            System.out.println(locClue[i]);
+	            System.out.println();
+	        }
+	        
+	    }
+	}
+	
+	public void clueSummary()
+	{
+	    System.out.println("Suspect Clues:");
+	    for (int i = 0; i < 8; i ++)
+	    {
+	        System.out.println(a[i].name + ": " + persClue[i]);
+	        
+
+	    }
+	    System.out.println("6-letter fruits NEVER lie.");
+	    
+	    System.out.println();
+	    
+	    System.out.println("Locations Clues:");
+	    for (int i = 0; i < 8; i ++)
+	    {
+	        System.out.println((i+1)+") " + locClue[i]);
+	        
+	    }
+	    System.out.println();
+	    System.out.println("Locations:");
+	    for (int i = 0; i < 8; i ++)
+	    {
+	        System.out.println(b[i].name);
+	        
+	    }
+	    
+	}
+	
+	public void finish()
+	{
+	    boolean g = true;
+	    Scanner c = new Scanner(System.in);
+	    Scanner d = new Scanner(System.in);
+	    System.out.println("You have all of the clues. You only have one chance to guess the real criminal and location. Guess wisely.");
+	    System.out.print("Person: ");
+	    String solve = c.nextLine();
+	    if (solve.toLowerCase().compareTo("mango") != 0)
+	    {
+	        g = false;
+	    }
+	    System.out.print("Location: ");
+	    String right = d.nextLine();
+	    if (right.toLowerCase().compareTo("gym") != 0)
+	    {
+	        g = false;
+	    }
+	    
+	    if (g == true)
+	    {
+	        System.out.println("Congratulations! You win!");
+	    }
+	    else
+	    {
+	        System.out.println("Too bad. Mango got away with his crime at the gym.");
+	    }
+
+	}
+	
+}
+
